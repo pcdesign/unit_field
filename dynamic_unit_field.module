@@ -112,3 +112,37 @@ function duf_field_formatter_view($object_type, $object, $field, $instance, $lan
   return $element;
 }
 
+
+/**
+ * Implements hook_field_widget_info().
+ */
+function email_field_widget_info() {
+  return array(
+    'duf_textfield' => array(
+      'label' => t('Text field with label'),
+      'field types' => array('duf'),
+      'settings' => array('size' => 60),
+    ),
+  );
+}
+
+/**
+ * Implements hook_field_widget_settings_form().
+ */
+function duf_field_widget_settings_form($field, $instance) {
+  $widget = $instance['widget'];
+  $settings = $widget['settings'];
+
+  $form['size'] = array(
+      );
+  return $form;
+}
+
+/**
+ * Implements hook_field_widget_form().
+ */
+function email_field_widget_form(&$form, &$form_state, $field, $instance, $langcode, $items, $delta, $base) {
+  $element = $base;
+  $element['duf'] = $base + array();
+  return $element;
+}
