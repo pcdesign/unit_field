@@ -74,3 +74,41 @@ function duf_field_formatter_info() {
   return $formats;
 }
 
+/**
+ * Implements hook_field_formatter_view().
+ */
+function duf_field_formatter_view($object_type, $object, $field, $instance, $langcode, $items, $display) {
+  $element = array();
+  switch ($display['type']) {
+    case 'duf_default':
+      foreach ($items as $delta => $item) {
+        $output = t($item['conv_val'] . $item['conv_suffix']);
+        $element[$delta] = array('#markup' => $output);
+      }
+      break;
+
+    case 'duf_defaultdata':
+      foreach ($items as $delta => $item) {
+        $output = t($item['raw_val'] . $item['raw_suffix']);
+        $element[$delta] = array('#markup' => $output);
+        break;
+      }
+      break;
+
+    case 'duf_nolabel':
+      foreach ($items as $delta => $item) {
+        $output = t($item['conv_val'] );
+        $element[$delta] = array('#markup' => $output);
+      }
+      break;
+
+    case 'duf_suffix':
+      foreach ($items as $delta => $item) {
+        $output = t($item['conv_suffix'] );
+        $element[$delta] = array('#markup' => $output);
+      }
+      break;
+  }
+  return $element;
+}
+
