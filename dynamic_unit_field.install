@@ -6,7 +6,9 @@
        return array(
          'columns' => array(
 			 'std_value' => array(
-				'type' => 'decimal',
+				'type' => 'numeric',
+			    'precision' => '10',
+			    'scale' => '2',
 				'not null' => TRUE,
 				'default'  => 0 
 				),
