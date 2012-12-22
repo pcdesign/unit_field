@@ -1,22 +1,19 @@
 <?php
- 
+ /**
+ * Implements hook_field_schema()
+ */
     function dynamic_unit_field_schema($field) {
        return array(
          'columns' => array(
 			 'std_value' => array(
-				'type' => 'int',
+				'type' => 'decimal',
 				'not null' => TRUE,
 				'default'  => 0 
 				),
 			'label_id' => array(
-				'type' => 'text',
+				'type' => 'varchar',
 				'not null' => TRUE,
-				'default'  => 0
-				),
-			'label_id' => array(
-				'type' => 'int',
-				'not null' => TRUE,
-				'default'  => 0
+				'default'  => ''
 				),
             ),
          ),
