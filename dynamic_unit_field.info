@@ -1,0 +1,5 @@
+name = Dynamic unit field
+description = Defines a field for dynamicly recalculated fields for units
+version = VERSION
+core = 7.x
+files[] = dynamic_unit_field.module
