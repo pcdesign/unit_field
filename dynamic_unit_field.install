@@ -1,0 +1,24 @@
+<?php
+ 
+    function dynamic_unit_field_schema($field) {
+       return array(
+         'columns' => array(
+			 'std_value' => array(
+				'type' => 'int',
+				'not null' => TRUE,
+				'default'  => 0 
+				),
+			'label_id' => array(
+				'type' => 'text',
+				'not null' => TRUE,
+				'default'  => 0
+				),
+			'label_id' => array(
+				'type' => 'int',
+				'not null' => TRUE,
+				'default'  => 0
+				),
+            ),
+         ),
+     );
+   }
