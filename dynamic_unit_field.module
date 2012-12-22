@@ -1,1 +1,76 @@
 <?php
+/**
+ * @file
+ * Defines a field for unitbased data, with a dynamic conversionmethod for displaying.
+ */
+ 
+ 
+ /**
+ * Implements hook_field_info().
+ */
+function duf_field_info() {
+  return array(
+    'duf' => array(
+      'label' => 'Dynamic unit field',
+      'description' => t('This field stores unitbased data for easier implementation of recalculation.'),
+      'default_widget' => 'duf_data_widget',
+      'default_formatter' => 'duf_default',
+      'property_type' => 'text',
+    ),
+  );
+}
+ 
+ /**
+ * Implements hook_field_widget_error().
+ */
+function duf_field_widget_error($element, $error, $form, &$form_state) {
+  form_error($element, $error['message']);
+}
+ 
+ /**
+ * Implements hook_migrate_api().
+ */
+function duf_migrate_api() {
+  return array('api' => 2);
+}
+
+/**
+ * Implements hook_content_is_empty().
+ */
+function duf_field_is_empty($item, $field) {
+  if (empty($item['duf'])) {
+    return TRUE;
+  }
+  return FALSE;
+}
+
+
+/**
+ * Implements hook_field_formatter_info().
+ *
+ */
+function duf_field_formatter_info() {
+  $formats = array(
+    'duf_default' => array(
+      'label' => t('Display converted data'),
+      'description' => t('Default formater for the dynamic data.'),
+      'field types' => array('duf'),
+    ),
+    'duf_defaultdata' => array(
+      'label' => t('No conversion'),
+      'description' => t('Display the original data without conversion.'),
+      'field types' => array('duf'),
+    ),
+    'duf_nolabel' => array(
+      'label' => t('Raw data'),
+      'description' => t('Display the data without an label.'),
+      'field types' => array('duf'),
+	'duf_suffix' => array(
+      'label' => t('Suffix only'),
+      'description' => t('Display the label.'),
+      'field types' => array('duf'),
+    ),
+  );
+  return $formats;
+}
+
