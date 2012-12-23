@@ -7,15 +7,9 @@
          'columns' => array(
 			 'std_value' => array(
 				'type' => 'numeric',
-			    'precision' => '10',
+			    'precision' => '5',
 			    'scale' => '2',
 				'not null' => TRUE,
-				'default'  => 0 
-				),
-			'label_id' => array(
-				'type' => 'varchar',
-				'not null' => TRUE,
-				'default'  => ''
 				),
             ),
          );
