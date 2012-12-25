@@ -150,25 +150,34 @@ function duf_field_widget_form(&$form, &$form_state, $field, $instance, $langcod
 
 function products_menu() {
 $items = array();
-$items['admin/config/people/units'] = array(
+$items['admin/config/units/'] = array(
       'title' => 'Configure Units',
       'description' => 'Allows administrators to configure units and their conversionmethod',
-      'weight' => -30,
       'page callback' => 'drupal_get_form',
       'page arguments' => array('duf_settings'),
-      'access arguments' => array('administer products'),
       'file' => 'duf.admin.inc',
+	  'type' => 'MENU_NORMAL_ITEM',
   );
  
-  $items['admin/config/people/units/manage'] = array(
+  $items['admin/config/units/manage'] = array(
       'title' => 'Manage the settings of the available units',
       'description' => 'Allows admins to manage products',
       'page callback' => 'drupal_get_form',
       'page arguments' => array('duf_settings'),
-      'access arguments' => array('administer products'),
       'file' => 'duf.admin.inc',
-      'weight' => -10,
+	  	  'type' => 'MENU_NORMAL_ITEM',
   );
  
   return $items;
+}
+/**
+ * Implementation of hook_perm().
+ */
+function duf_permission() {
+  return array(
+    'administer module filter' => array(
+      'title' => t('Administer Module Filter'),
+      'description' => t('Configure how Module Filter performs.')
+    )
+  );
 }
