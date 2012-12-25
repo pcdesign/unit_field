@@ -155,18 +155,18 @@ $items['admin/config/people/units'] = array(
       'description' => 'Allows administrators to configure units and their conversionmethod',
       'weight' => -30,
       'page callback' => 'drupal_get_form',
-      'page arguments' => array('duf_admin_settings_form'),
+      'page arguments' => array('duf_settings'),
       'access arguments' => array('administer products'),
-      'file' => 'products.admin.inc',
+      'file' => 'duf.admin.inc',
   );
  
   $items['admin/config/people/units/manage'] = array(
       'title' => 'Manage the settings of the available units',
       'description' => 'Allows admins to manage products',
       'page callback' => 'drupal_get_form',
-      'page arguments' => array('products_admin_settings_form'),
+      'page arguments' => array('duf_settings'),
       'access arguments' => array('administer products'),
-      'file' => 'products.admin.inc',
+      'file' => 'duf.admin.inc',
       'weight' => -10,
   );
  

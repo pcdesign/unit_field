@@ -13,7 +13,7 @@
 /**
  * Settings form for module filter.
  */
-function module_filter_settings() {
+function duf_settings() {
   $form['module_filter_tabs'] = array(
     '#type' => 'checkbox',
     '#title' => t('Tabs'),
