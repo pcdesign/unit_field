@@ -148,26 +148,15 @@ function duf_field_widget_form(&$form, &$form_state, $field, $instance, $langcod
   return $element;
 }
 
-function products_menu() {
-$items = array();
-$items['admin/config/units/'] = array(
-      'title' => 'Configure Units',
-      'description' => 'Allows administrators to configure units and their conversionmethod',
-      'page callback' => 'drupal_get_form',
-      'page arguments' => array('duf_settings'),
-      'file' => 'duf.admin.inc',
-	  'type' => 'MENU_NORMAL_ITEM',
+function duf_menu() {
+  $items['admin/config/user-interface/duf'] = array(
+    'title' => 'DUF',
+    'description' => 'Configure settings for DUF.',
+    'access arguments' => array('administer DUF'),
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('duf_settings'),
+    'file' => 'duf.admin.inc'
   );
- 
-  $items['admin/config/units/manage'] = array(
-      'title' => 'Manage the settings of the available units',
-      'description' => 'Allows admins to manage products',
-      'page callback' => 'drupal_get_form',
-      'page arguments' => array('duf_settings'),
-      'file' => 'duf.admin.inc',
-	  	  'type' => 'MENU_NORMAL_ITEM',
-  );
- 
   return $items;
 }
 /**
@@ -175,9 +164,9 @@ $items['admin/config/units/'] = array(
  */
 function duf_permission() {
   return array(
-    'administer module filter' => array(
-      'title' => t('Administer Module Filter'),
-      'description' => t('Configure how Module Filter performs.')
+    'administer DUF' => array(
+      'title' => t('Administer dynamic unit field'),
+      'description' => t('Configure how DUF performs.')
     )
   );
 }
