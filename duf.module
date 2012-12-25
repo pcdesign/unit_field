@@ -147,3 +147,28 @@ function duf_field_widget_form(&$form, &$form_state, $field, $instance, $langcod
   $element['duf'] = $base + array();
   return $element;
 }
+
+function products_menu() {
+$items = array();
+$items['admin/config/people/units'] = array(
+      'title' => 'Configure Units',
+      'description' => 'Allows administrators to configure units and their conversionmethod',
+      'weight' => -30,
+      'page callback' => 'drupal_get_form',
+      'page arguments' => array('duf_admin_settings_form'),
+      'access arguments' => array('administer products'),
+      'file' => 'products.admin.inc',
+  );
+ 
+  $items['admin/config/people/units/manage'] = array(
+      'title' => 'Manage the settings of the available units',
+      'description' => 'Allows admins to manage products',
+      'page callback' => 'drupal_get_form',
+      'page arguments' => array('products_admin_settings_form'),
+      'access arguments' => array('administer products'),
+      'file' => 'products.admin.inc',
+      'weight' => -10,
+  );
+ 
+  return $items;
+}
