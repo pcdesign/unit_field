@@ -14,3 +14,140 @@
             ),
          );
    }
+   
+   
+/**
+*Implements hook_shema()
+*/
+ function mymodule_schema() {
+  $schema['duf_groups'] = array(
+		'description' => 'This is the table that will hold all groups of units.',
+		'group_fields' => array(
+			 'group_id' => array(
+				'description' => 'The primary identifier for a group.',
+				'type' => 'serial',
+				'unsigned' => TRUE,
+				'not null' => TRUE
+			),
+			'groupname' => array(
+				'description' => 'The name of the groups where the units will belong to. e.g. metric or US',
+				'type' => 'varchar',
+				'length' => 255,
+				'not null' => TRUE,
+				'default' => ''
+			),
+			'listid' => array(
+				'description' => 'The id of the corresponding list of groups ',
+				'type' => 'int',
+				'not null' => TRUE,
+				'default' => 0
+			),
+		),
+		'indexes' => array(
+		  ),
+		'unique keys' => array(
+			'groupid_listid' => array('group_id', 'listing_id'),
+			'groupname_unique'=> array('groupname'),
+		  ),
+		'primary key' => array('group_id'),
+	);
+  $schema['duf_lists'] = array(
+		'description' => 'This is the table that will hold all lists of units.',
+		'list_fields' => array(
+			 'list_id' => array(
+				'description' => 'The primary identifier for a list.',
+				'type' => 'serial',
+				'unsigned' => TRUE,
+				'not null' => TRUE
+			),
+			'listname' => array(
+				'description' => 'The name of the list where the groups will belong to. e.g. measurement or currency',
+				'type' => 'varchar',
+				'length' => 255,
+				'not null' => TRUE,
+				'default' => ''
+			),
+		),
+		'indexes' => array(
+		  ),
+		'unique keys' => array(
+			'listid_listname' => array('list_id', 'listname'),
+		  ),
+		'primary key' => array('list_id'),
+	);
+  $schema['duf_unit'] = array(
+		'description' => 'This is the table that will hold all units.',
+		'unit_fields' => array(
+			 'unit_id' => array(
+				'description' => 'The primary identifier for a unit.',
+				'type' => 'serial',
+				'unsigned' => TRUE,
+				'not null' => TRUE
+			),
+			'unitname_full' => array(
+				'description' => 'The label of the unit in full e.g. gramm or meter or gallon',
+				'type' => 'varchar',
+				'length' => 255,
+				'not null' => TRUE,
+				'default' => ''
+			),
+			'unitname_short' => array(
+				'description' => 'The name of the unit shortened e.g. g or m or gal',
+				'type' => 'varchar',
+				'length' => 255,
+				'not null' => TRUE,
+				'default' => ''
+			),
+			'groupid' => array(
+				'description' => 'The id of the corresponding group where the unit belings to ',
+				'type' => 'int',
+				'not null' => TRUE,
+				'default' => 0
+			),
+		),
+		'indexes' => array(
+		  ),
+		'unique keys' => array(
+			'unitid_groupid' => array('unit_id', 'groupid'),
+		),
+		'primary key' => array('unit_id'),
+  );
+  $schema['duf_conversiontable'] = array(
+		'description' => 'This is the table that will hold all unitconversionvalues.',
+		'conversion_fields' => array(
+			 'unitconversion_id' => array(
+				'description' => 'The primary identifier for a unitconversionvalue.',
+				'type' => 'serial',
+				'unsigned' => TRUE,
+				'not null' => TRUE
+			),
+			'unitid1' => array(
+				'description' => 'The id of the base unit ',
+				'type' => 'int',
+				'not null' => TRUE,
+				'default' => 0
+			),
+			'unitid2' => array(
+				'description' => 'The id of the unit where we are converting to ',
+				'type' => 'int',
+				'not null' => TRUE,
+				'default' => 0
+			),
+			'conversion amount' => array(
+				'description' => 'The conversitonrate from 1 vs 2',
+				'type' => 'varchar',
+				'length' => 255,
+				'not null' => TRUE,
+				'default' => ''
+			),
+		),
+		'indexes' => array(
+		  ),
+		'unique keys' => array(
+			'unitid_groupid' => array('unit_id', 'groupid'),
+		),
+		'primary key' => array('unit_id'),
+  );
+
+  return $schema;
+}
