@@ -3,4 +3,4 @@ description = Defines a field for dynamicly recalculated fields for units
 version = "7.x-1.0-beta1"
 core = 7.x
 package = Fields
-configure = admin/structure/units
+configure = admin/config/people/units
