@@ -14,31 +14,14 @@
  * Settings form for module filter.
  */
 function duf_settings() {
-  $form['module_filter_tabs'] = array(
-    '#type' => 'checkbox',
-    '#title' => t('Tabs'),
-    '#description' => t('Divide module groups into tabbed list.'),
-    '#default_value' => variable_get('module_filter_tabs', 1)
-  );
-  $form['tabs'] = array(
+  $form['units'] = array(
     '#type' => 'fieldset',
-    '#title' => t('Tabs'),
-    '#description' => t('Settings used with the tabs view of the modules page.'),
+    '#title' => t('View the active units'),
+    '#description' => t('List of all active units.'),
     '#collapsible' => TRUE,
     '#collapsed' => FALSE
   );
-  $form['tabs']['module_filter_count_enabled'] = array(
-    '#type' => 'checkbox',
-    '#title' => t('Number of enabled modules'),
-    '#description' => t('Display the number of enabled modules in the active tab along with the total number of modules.'),
-    '#default_value' => variable_get('module_filter_count_enabled', 1)
-  );
-  $form['tabs']['module_filter_visual_aid'] = array(
-    '#type' => 'checkbox',
-    '#title' => t('Visuals for newly enabled and disabled modules'),
-    '#description' => t("Adds a basic count to tabs of modules being enabled/disabled and colors the module row pending it's being enabled or disabled"),
-    '#default_value' => variable_get('module_filter_visual_aid', 1)
-  );
+ 
   $form['tabs']['module_filter_dynamic_save_position'] = array(
     '#type' => 'checkbox',
     '#title' => t('Save dynamic positioning'),
@@ -46,4 +29,16 @@ function duf_settings() {
     '#default_value' => variable_get('module_filter_dynamic_save_position', 0)
   );
   return system_settings_form($form);
+
+ 
+ 
+ }
+function duf_settings2 (){
+  $form['units'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('View the units'),
+    '#description' => t('List of all active units.'),
+    '#collapsible' => TRUE,
+    '#collapsed' => FALSE
+  );
 }
