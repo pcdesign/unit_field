@@ -155,7 +155,37 @@ function duf_menu() {
     'access arguments' => array('administer DUF'),
     'page callback' => 'drupal_get_form',
     'page arguments' => array('duf_settings'),
-    'file' => 'duf.admin.inc'
+    'file' => 'duf.admin.inc',
+	'type' => MENU_NORMAL_ITEM,
+  );
+  $items['admin/config/user-interface/duf/unit/%/edit'] = array(
+    'title' => 'Edit the unit',
+    'description' => 'Configure the details.',
+    'access arguments' => array('administer DUF'),
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('duf_edit_unit'),
+    'file' => 'duf.admin.inc',
+	);
+  $items['admin/config/user-interface/duf/add_unit'] = array(
+    'title' => 'Add new unit',
+    'description' => 'Manage settings for DUF.',
+    'access arguments' => array('administer DUF'),
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('duf_create_new_unit'),
+    'file' => 'duf.admin.inc',
+    'type' => MENU_LOCAL_TASK,
+	'access callback' => TRUE,
+  );
+$items['admin/config/user-interface/duf/list'] = array(
+    'title' => 'Unitlist',
+    'description' => 'Manage settings for DUF.',
+    'access arguments' => array('administer DUF'),
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('duf_list_of_units'),
+    'file' => 'duf.admin.inc',
+    'type' => MENU_DEFAULT_LOCAL_TASK,
+	'access callback' => TRUE,
+	
   );
   return $items;
 }
